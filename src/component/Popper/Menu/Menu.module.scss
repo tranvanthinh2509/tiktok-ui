@@ -1,0 +1,45 @@
+//Menu list
+.menu-list {
+    width: 224px;
+    .menu-item {
+        min-width: 80px;
+        margin-left: 0;
+        padding: 12px 4px;
+        padding-left: 10px;
+    }
+}
+.menu-Popper {
+    padding-bottom: 8px;
+}
+
+//Menuitem
+.menu-item {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+    border-radius: 0;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+// Header-title
+.Header-item {
+    position: relative;
+    height: 50px;
+    margin-top: -8px;
+}
+.btnBack {
+    width: 50px;
+    height: 100%;
+    background-color: transparent;
+}
+.title-header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    font-size: 19px;
+}
