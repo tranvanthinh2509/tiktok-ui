@@ -1,37 +1,36 @@
 import classNames from 'classnames/bind';
 import style from './Header.module.scss';
 import images from '~/assets/image';
-import HeadlessTippy from '@tippyjs/react/headless';
+
 import Tippy from '@tippyjs/react';
-import { Wrapper as PopperWrapper } from '~/component/Popper';
+
 import Button from '~/component/Button';
-import AccountItem from '~/component/AccountIItem';
+
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faCircleXmark,
-    faSpinner,
-    faMagnifyingGlass,
-    faPlus,
-    faEllipsisVertical,
-    faEarthAsia,
-    faQuestionCircle,
-    faKeyboard,
-    faCloudUpload,
-    faUser,
-    faGear,
-    faCoins,
-    faSignOut,
-} from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { faPlus, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+
 import Menu from '~/component/Popper/Menu/Menu';
+import {
+    GiveCoin,
+    KeyboardIcon,
+    LanguageIcon,
+    LogoutIcon,
+    MessageIcon,
+    OpenMessages,
+    ProFileIcon,
+    QuestionIcon,
+    SettingIcon,
+    UploadIcon,
+} from '~/component/Icons';
+import Image from '~/component/Image';
+import Search from './Search';
 
 const cx = classNames.bind(style);
 const currentUser = true;
 const MENU_ITEMS = [
     {
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        icon: <LanguageIcon />,
         title: 'English',
         children: {
             title: 'Language',
@@ -50,35 +49,35 @@ const MENU_ITEMS = [
         },
     },
     {
-        icon: <FontAwesomeIcon icon={faQuestionCircle} />,
+        icon: <QuestionIcon />,
         title: 'Feedback And Help',
         to: '/feedback',
     },
     {
-        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        icon: <KeyboardIcon />,
         title: 'Nhà sáng tạo nội dung',
     },
 ];
 
 const userItem = [
     {
-        icon: <FontAwesomeIcon icon={faUser} />,
+        icon: <ProFileIcon />,
         title: 'View Profile',
         to: '/SonTung',
     },
     {
-        icon: <FontAwesomeIcon icon={faCoins} />,
+        icon: <GiveCoin />,
         title: 'Give Coin',
         to: '/coin',
     },
     {
-        icon: <FontAwesomeIcon icon={faGear} />,
+        icon: <SettingIcon />,
         title: 'Setting',
         to: '/setting',
     },
     ...MENU_ITEMS,
     {
-        icon: <FontAwesomeIcon icon={faSignOut} />,
+        icon: <LogoutIcon />,
         title: 'Log Out',
         to: '/logout',
         separate: true,
@@ -86,12 +85,6 @@ const userItem = [
 ];
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
     const onHandleChange = (menuItem) => {
         switch (menuItem.type) {
             case 'languege':
@@ -107,40 +100,8 @@ function Header() {
                 <div className={cx('header-logo')}>
                     <img src={images.logo} alt="tiktok" />
                 </div>
-                <HeadlessTippy
-                    interactive="true"
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div
-                            className={cx('search-result')}
-                            tabIndex="-1"
-                            {...attrs}
-                        >
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem></AccountItem>
-                                <AccountItem></AccountItem>
-                                <AccountItem></AccountItem>
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Tìm kiếm" spellCheck="true"></input>
 
-                        <FontAwesomeIcon
-                            className={cx('loading')}
-                            icon={faSpinner}
-                        />
-                        <button className={cx('close-btn')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-
-                        <button className={cx('find-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search />
 
                 <div className={cx('actions')}>
                     {currentUser ? (
@@ -151,7 +112,28 @@ function Header() {
                                 placement="bottom"
                             >
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+
+                            <Tippy
+                                delay={[0, 200]}
+                                content="Open Messages"
+                                placement="bottom"
+                            >
+                                <button className={cx('action-btn')}>
+                                    <OpenMessages />
+                                </button>
+                            </Tippy>
+
+                            <Tippy
+                                delay={[0, 200]}
+                                content="Inbox"
+                                placement="bottom"
+                            >
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                    <span className={cx('badge')}>12</span>
                                 </button>
                             </Tippy>
                         </>
@@ -178,10 +160,11 @@ function Header() {
                         onChange={onHandleChange}
                     >
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Son_Tung_M-TP_1_%282017%29.png"
                                 alt="Sơn Tùng"
+                                // fallback="https://upload.wikimedia.org/wikipedia/commons/f/fe/Son_Tung_M-TP_1_%282017%29.png"
                             />
                         ) : (
                             <button className={cx('more-btn')}>
