@@ -14,7 +14,9 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.header-logo {
+    display: flex;
+}
 // action
 .actions {
     display: flex;

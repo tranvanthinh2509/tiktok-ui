@@ -8,6 +8,7 @@
     --black: #000;
     --white: #fff;
     --text-color: #161823;
+    --font-family: 'TikTokFont', 'san-serif';
 }
 * {
     box-sizing: border-box;
@@ -30,7 +31,7 @@ html {
     font-size: 62.5%;
 }
 body {
-    font-family: 'TikTokFont', 'san-serif';
+    font-family: var(--font-family);
     line-height: 1.5;
     text-rendering: optimizeSpeed;
 }

@@ -45,6 +45,13 @@ function Search() {
     const handleShowResult = () => {
         setShowResult(true);
     };
+    const handleOnChange = (e) => {
+        const searchInput = e.target.value;
+
+        if (!searchInput.startsWith(' ')) {
+            setSearchValue(searchInput);
+        }
+    };
 
     return (
         <HeadlessTippy
@@ -73,7 +80,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Tìm kiếm"
                     spellCheck="true"
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleOnChange}
                     onFocus={handleShowResult}
                 ></input>
                 {showLoading && (

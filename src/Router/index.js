@@ -2,13 +2,17 @@ import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
+import Profile from '~/pages/Profile';
 import { HeaderOnly } from '~/component/Layout';
+import linkTo from '~/config/routes';
 
 const publicRouter = [
-    { path: '/', component: Home },
-    { path: '/following', component: Following },
-    { path: '/search', component: Search, layout: null },
-    { path: '/upload', component: Upload, layout: HeaderOnly },
+    { path: linkTo.home, component: Home },
+    { path: linkTo.following, component: Following },
+    { path: linkTo.profile, component: Profile },
+    // { path: '/@:nickname', component: Profile },
+    { path: linkTo.search, component: Search, layout: null },
+    { path: linkTo.upload, component: Upload, layout: HeaderOnly },
 ];
 
 const privateRouter = [];

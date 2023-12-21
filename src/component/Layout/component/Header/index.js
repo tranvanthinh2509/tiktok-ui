@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import style from './Header.module.scss';
 import images from '~/assets/image';
-
+import linkTo from '~/config/routes';
 import Tippy from '@tippyjs/react';
 
 import Button from '~/component/Button';
@@ -25,6 +25,7 @@ import {
 } from '~/component/Icons';
 import Image from '~/component/Image';
 import Search from './Search';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(style);
 const currentUser = true;
@@ -97,9 +98,9 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('header-logo')}>
+                <Link to={linkTo.home} className={cx('header-logo')}>
                     <img src={images.logo} alt="tiktok" />
-                </div>
+                </Link>
 
                 <Search />
 
