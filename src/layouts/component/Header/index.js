@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import style from './Header.module.scss';
 import images from '~/assets/image';
-import linkTo from '~/config/routes';
+import config from '~/config';
 import Tippy from '@tippyjs/react';
 
 import Button from '~/component/Button';
@@ -98,7 +98,7 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={linkTo.home} className={cx('header-logo')}>
+                <Link to={config.linkTo.home} className={cx('header-logo')}>
                     <img src={images.logo} alt="tiktok" />
                 </Link>
 
