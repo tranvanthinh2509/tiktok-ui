@@ -57,7 +57,9 @@ function Menu({
                                 }}
                             />
                         )}
-                        {renderMenuUtem()}
+                        <div className={cx('menu-body')}>
+                            {renderMenuUtem()}
+                        </div>
                     </PopperWrapper>
                 </div>
             )}
