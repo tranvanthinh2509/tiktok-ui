@@ -27,6 +27,7 @@
         background-color: transparent;
         padding: 12px 0;
         caret-color: var(--primary);
+        padding-right: 35px;
     }
     input:not(:placeholder-shown) ~ .find-btn {
         color: rgba(22, 24, 35, 0.75);

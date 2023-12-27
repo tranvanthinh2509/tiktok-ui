@@ -18,6 +18,11 @@ function Menu({
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
+    // Back Menu
+    const handleBack = () => {
+        setHistory((prev) => prev.slice(0, history.length - 1));
+    };
+
     const renderMenuUtem = () => {
         return current.data.map((item, index) => {
             const isParent = !!item.children;
@@ -37,6 +42,16 @@ function Menu({
             );
         });
     };
+    const renderResult = (attrs) => (
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+            <PopperWrapper className={cx('menu-Popper')}>
+                {history.length > 1 && (
+                    <Header title={current.title} onBack={handleBack} />
+                )}
+                <div className={cx('menu-body')}>{renderMenuUtem()}</div>
+            </PopperWrapper>
+        </div>
+    );
 
     return (
         <Tippy
@@ -45,25 +60,7 @@ function Menu({
             delay={[0, 500]}
             hideOnClick={hindOnClick}
             placement="bottom-end"
-            render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper className={cx('menu-Popper')}>
-                        {history.length > 1 && (
-                            <Header
-                                title={current.title}
-                                onBack={() => {
-                                    setHistory((prev) =>
-                                        prev.slice(0, history.length - 1),
-                                    );
-                                }}
-                            />
-                        )}
-                        <div className={cx('menu-body')}>
-                            {renderMenuUtem()}
-                        </div>
-                    </PopperWrapper>
-                </div>
-            )}
+            render={renderResult}
             onHide={() => {
                 setHistory((prev) => prev.slice(0, 1));
             }}

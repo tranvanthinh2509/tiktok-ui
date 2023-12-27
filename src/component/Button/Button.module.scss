@@ -7,6 +7,8 @@
     border-radius: 4px;
     background-color: var(--white);
     user-select: none;
+    display: flex;
+    justify-content: center;
 
     + .wrapper {
         margin-left: 16px;
