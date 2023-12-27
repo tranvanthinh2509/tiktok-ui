@@ -4,5 +4,6 @@ const linkTo = {
     profile: '/profile',
     search: '/search',
     upload: '/upload',
+    live: '/live',
 };
 export default linkTo;
